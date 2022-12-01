@@ -1,10 +1,14 @@
 import {
   collection,
+  doc,
   getDocs,
+  orderBy,
+  query,
   QueryDocumentSnapshot,
   QuerySnapshot,
   SnapshotOptions,
   Timestamp,
+  updateDoc,
 } from 'firebase/firestore';
 import { db } from './app';
 
@@ -13,9 +17,18 @@ export type CalendarDay = {
   date: number;
   imageUrl: string;
   dayNumber: number;
+  isLocked: boolean;
 };
 
 export namespace CalendarDayFirebase {
+  export const unlockCalendarDay = (calendarId: string, dayId: string) => {
+    const ref = doc(db, `calendars/${calendarId}/days/${dayId}`);
+
+    updateDoc(ref, {
+      is_locked: false,
+    });
+  };
+
   export const getAllByCalendarId = (
     calendarId: string
   ): Promise<QuerySnapshot<CalendarDay>> => {
@@ -23,7 +36,9 @@ export namespace CalendarDayFirebase {
       calendarDayConverter
     );
 
-    return getDocs(ref);
+    const q = query(ref, orderBy('date', 'asc'));
+
+    return getDocs(q);
   };
 
   const calendarDayConverter = {
@@ -42,6 +57,7 @@ export namespace CalendarDayFirebase {
         date: (data.date as Timestamp).toDate().getTime(),
         imageUrl: data.image_url,
         dayNumber: data.day_number ?? 0,
+        isLocked: data.is_locked ?? true,
       };
     },
   };

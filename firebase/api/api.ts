@@ -9,7 +9,6 @@ export const fetchApi = async <T>(
   path: string,
   converter?: ConverterFunction<T>
 ): Promise<T> => {
-  console.log(API_BASE_URL);
   const res = await fetch(`${API_BASE_URL}/${path}`);
 
   if (!res.ok) {

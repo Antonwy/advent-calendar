@@ -1,7 +1,7 @@
 import { Calendar, CalendarType } from '../firebase/calendar';
 
 type CalendarHeaderProps = {
-  calendar: Calendar;
+  calendar?: Calendar;
 };
 
 export default function CalendarHeader({ calendar }: CalendarHeaderProps) {
@@ -17,10 +17,10 @@ export default function CalendarHeader({ calendar }: CalendarHeaderProps) {
   return (
     <header className="flex gap-1 px-8 md:px-16">
       <h1 className="text-black font-semibold text-sm sm:text-base lg:text-xl">
-        {calendar.name}
+        {calendar?.name ?? 'Advent'}
       </h1>
       <h1 className="text-gray font-semibold text-sm sm:text-base lg:text-xl">
-        {prettyType(calendar.type)}
+        {calendar ? prettyType(calendar?.type) : 'Calendar'}
       </h1>
     </header>
   );

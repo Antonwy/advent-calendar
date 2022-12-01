@@ -11,11 +11,10 @@ export namespace CalendarApi {
       return {
         ...res,
         startDate: new Date(res.startDate).getTime(),
-        days: res.days.map((day, index) => {
+        days: res.days.map((day) => {
           return {
             ...day,
             date: new Date(day.date).getTime(),
-            dayNumber: index + 1,
           };
         }),
       };

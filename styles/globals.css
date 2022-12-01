@@ -10,7 +10,13 @@
         transition-all duration-300 ease-in-out;
   }
 
-  .calendar-is-today {
+  .calendar-is-ready-but-locked {
     @apply bg-green-light text-green hover:bg-green hover:text-white;
+  }
+}
+
+@layer base {
+  [data-nextjs-scroll-focus-boundary] {
+    display: contents;
   }
 }

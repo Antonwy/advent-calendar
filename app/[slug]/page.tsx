@@ -24,7 +24,7 @@ export default async function Page({ params }: PageParams) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 pb-4">
       {calendar.days.map((day) => (
-        <CalendarDayItem key={day.id} day={day} />
+        <CalendarDayItem key={day.id} day={day} calendarId={calendar.id} />
       ))}
     </div>
   );

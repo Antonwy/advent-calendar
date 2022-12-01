@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next/types';
-import { Calendar, CalendarFirebase } from '../../../firebase/calendar';
-import {
-  CalendarDay,
-  CalendarDayFirebase,
-} from '../../../firebase/calendar_day';
+import { CalendarFirebase } from '../../../firebase/calendar';
+import { CalendarDayFirebase } from '../../../firebase/calendar_day';
 
 export default async function handler(
   req: NextApiRequest,
