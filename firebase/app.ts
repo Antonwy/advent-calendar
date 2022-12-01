@@ -1,10 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { collection, getFirestore } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 require('firebase/firestore');
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC1ExJGrL1iUFbMl4apYKroQce3hvlw1Ic',
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: 'advent-calendar-viola.firebaseapp.com',
   projectId: 'advent-calendar-viola',
   storageBucket: 'advent-calendar-viola.appspot.com',
