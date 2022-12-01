@@ -1,4 +1,7 @@
-export const API_BASE_URL = 'http://localhost:3000/api';
+const dev = process.env.NODE_ENV !== 'production';
+export const API_BASE_URL = dev
+  ? 'http://localhost:3000/api'
+  : 'https://advent-calendar-viola.web.app/api';
 
 type ConverterFunction<T> = (res: T) => T;
 
