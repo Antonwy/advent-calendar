@@ -42,7 +42,7 @@ export default function CalendarDayModal<T>({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-lg h-3/4 max-h-screen transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full max-w-lg h-3/4 max-h-screen transform overflow-clip rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all relative">
                   <Image
                     src={day.imageUrl}
                     alt="Calendar Day Image"
