@@ -29,6 +29,14 @@ export namespace CalendarDayFirebase {
     });
   };
 
+  export const lockCalendarDay = (calendarId: string, dayId: string) => {
+    const ref = doc(db, `calendars/${calendarId}/days/${dayId}`);
+
+    updateDoc(ref, {
+      is_locked: true,
+    });
+  };
+
   export const getAllByCalendarId = (
     calendarId: string
   ): Promise<QuerySnapshot<CalendarDay>> => {

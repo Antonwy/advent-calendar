@@ -24,6 +24,11 @@ export default function CalendarDayItem({
     return setIsOpen(true);
   };
   const closeModal = () => setIsOpen(false);
+  const lockDay = () => {
+    setIsLocked(true);
+    setIsOpen(false);
+    CalendarDayFirebase.lockCalendarDay(calendarId, day.id);
+  };
 
   const today = new Date();
   const date = new Date(day.date);
@@ -71,7 +76,12 @@ export default function CalendarDayItem({
           </div>
         )}
       </div>
-      <CalendarDayModal closeModal={closeModal} isOpen={isOpen} day={day} />
+      <CalendarDayModal
+        lockDay={lockDay}
+        closeModal={closeModal}
+        isOpen={isOpen}
+        day={day}
+      />
     </>
   );
 }

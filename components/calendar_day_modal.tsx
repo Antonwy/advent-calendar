@@ -2,16 +2,18 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CalendarDay } from '../firebase/calendar_day';
 import Image from 'next/image';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { LockClosedIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 type ModalProps<T> = {
   closeModal: (res?: T) => void;
+  lockDay: () => void;
   isOpen: boolean;
   day: CalendarDay;
 };
 
 export default function CalendarDayModal<T>({
   closeModal,
+  lockDay,
   isOpen,
   day,
 }: ModalProps<T>) {
@@ -49,7 +51,14 @@ export default function CalendarDayModal<T>({
                     fill={true}
                     className="object-cover"
                   />
-                  <div className="absolute right-8 top-8">
+                  <div className="absolute right-8 top-8 flex gap-2">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-white p-2 text-black hover:scale-105 transition-all outline-none ease-in-out"
+                      onClick={lockDay}
+                    >
+                      <LockClosedIcon className="h-4 w-4" />
+                    </button>
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-white p-2 text-black hover:scale-105 transition-all outline-none ease-in-out"
