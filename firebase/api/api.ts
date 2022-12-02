@@ -1,7 +1,7 @@
 const dev = process.env.NODE_ENV !== 'production';
 export const API_BASE_URL = dev
   ? 'http://localhost:3000/api'
-  : 'https://advent-calendar-eta.vercel.app/api';
+  : 'https://anton-advent-calendar.vercel.app/api';
 
 type ConverterFunction<T> = (res: T) => T;
 
