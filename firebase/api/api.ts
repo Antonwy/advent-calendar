@@ -7,9 +7,12 @@ type ConverterFunction<T> = (res: T) => T;
 
 export const fetchApi = async <T>(
   path: string,
-  converter?: ConverterFunction<T>
+  converter?: ConverterFunction<T>,
+  options?: RequestInit
 ): Promise<T> => {
-  const res = await fetch(`${API_BASE_URL}/${path}`);
+  const res = await fetch(`${API_BASE_URL}/${path}`, {
+    next: { revalidate: 10 },
+  });
 
   if (!res.ok) {
     throw new Error(`Failed to fetch ${path} `);
