@@ -10,12 +10,12 @@ export default async function Page() {
   const calendars = await getCalendars();
 
   return (
-    <div className="">
+    <div className="w-full h-full flex flex-col gap-2 items-center justify-center">
       {calendars.map((calendar) => (
         <Link
           key={calendar.id}
           type="button"
-          className="rounded-md bg-green-light p-2 text-green transition-all outline-none ease-in-out"
+          className="w-36 text-center rounded-lg bg-green-light p-4 text-green hover:bg-green hover:text-white transition-all outline-none ease-in-out"
           href={`/${calendar.id}`}
         >
           {calendar.name}
