@@ -17,6 +17,7 @@ export type Calendar = {
   days: CalendarDay[];
   type: CalendarType;
   startDate: number;
+  code?: string;
 };
 
 export enum CalendarType {
@@ -41,13 +42,16 @@ export namespace CalendarFirebase {
     fromFirestore: (snap: QueryDocumentSnapshot, options: SnapshotOptions) => {
       const data = snap.data(options);
 
-      return {
+      const cal: Calendar = {
         id: snap.id,
         name: data.name,
         type: data.type,
         days: data.days ?? [],
         startDate: data.start_date.toDate(),
+        code: data.code,
       };
+
+      return cal;
     },
   };
 }

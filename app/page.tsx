@@ -11,16 +11,18 @@ export default async function Page() {
 
   return (
     <div className="w-full h-full flex flex-col gap-2 items-center justify-center">
-      {calendars.map((calendar) => (
-        <Link
-          key={calendar.id}
-          type="button"
-          className="w-36 text-center rounded-lg bg-green-light p-4 text-green hover:bg-green hover:text-white transition-all outline-none ease-in-out"
-          href={`/${calendar.id}`}
-        >
-          {calendar.name}
-        </Link>
-      ))}
+      {calendars
+        .filter((cal) => !cal.code)
+        .map((calendar) => (
+          <Link
+            key={calendar.id}
+            type="button"
+            className="w-36 text-center rounded-lg bg-green-light p-4 text-green hover:bg-green hover:text-white transition-all outline-none ease-in-out"
+            href={`/${calendar.id}`}
+          >
+            {calendar.name}
+          </Link>
+        ))}
     </div>
   );
 }
