@@ -45,6 +45,9 @@ export default function CalendarDayModal<T>({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-lg h-3/4 max-h-screen transform overflow-clip rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all relative">
+                  <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
+                    <p className="text-gray animate-pulse">Loading image...</p>
+                  </div>
                   <Image
                     src={day.imageUrl}
                     alt="Calendar Day Image"

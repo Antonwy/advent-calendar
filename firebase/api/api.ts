@@ -8,10 +8,10 @@ type ConverterFunction<T> = (res: T) => T;
 export const fetchApi = async <T>(
   path: string,
   converter?: ConverterFunction<T>,
-  options?: RequestInit
+  revalidate?: number
 ): Promise<T> => {
   const res = await fetch(`${API_BASE_URL}/${path}`, {
-    next: { revalidate: 10 },
+    cache: 'no-store',
   });
 
   if (!res.ok) {

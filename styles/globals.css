@@ -20,3 +20,7 @@
     display: contents;
   }
 }
+
+.clip-mask-safari {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}

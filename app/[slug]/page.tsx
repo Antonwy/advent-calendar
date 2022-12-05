@@ -22,7 +22,7 @@ export default async function Page({ params }: PageParams) {
   const calendar = await getCalendarBySlug(params.slug);
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 pb-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 pb-4 pt-2">
       {calendar.days.map((day) => (
         <CalendarDayItem key={day.id} day={day} calendarId={calendar.id} />
       ))}

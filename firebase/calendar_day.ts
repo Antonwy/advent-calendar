@@ -24,7 +24,7 @@ export namespace CalendarDayFirebase {
   export const unlockCalendarDay = (calendarId: string, dayId: string) => {
     const ref = doc(db, `calendars/${calendarId}/days/${dayId}`);
 
-    updateDoc(ref, {
+    return updateDoc(ref, {
       is_locked: false,
     });
   };
@@ -32,7 +32,7 @@ export namespace CalendarDayFirebase {
   export const lockCalendarDay = (calendarId: string, dayId: string) => {
     const ref = doc(db, `calendars/${calendarId}/days/${dayId}`);
 
-    updateDoc(ref, {
+    return updateDoc(ref, {
       is_locked: true,
     });
   };

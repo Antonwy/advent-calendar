@@ -5,6 +5,7 @@ import { CalendarDay, CalendarDayFirebase } from '../firebase/calendar_day';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 import CalendarDayModal from './calendar_day_modal';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 type CalendarDayItemProps = {
   day: CalendarDay;
@@ -16,18 +17,18 @@ export default function CalendarDayItem({
   calendarId,
 }: CalendarDayItemProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLocked, setIsLocked] = useState(day.isLocked);
+  const router = useRouter();
 
-  const openModal = () => {
-    setIsLocked(false);
-    CalendarDayFirebase.unlockCalendarDay(calendarId, day.id);
-    return setIsOpen(true);
+  const openModal = async () => {
+    setIsOpen(true);
+    await CalendarDayFirebase.unlockCalendarDay(calendarId, day.id);
+    router.refresh();
   };
   const closeModal = () => setIsOpen(false);
-  const lockDay = () => {
-    setIsLocked(true);
+  const lockDay = async () => {
     setIsOpen(false);
-    CalendarDayFirebase.lockCalendarDay(calendarId, day.id);
+    await CalendarDayFirebase.lockCalendarDay(calendarId, day.id);
+    router.refresh();
   };
 
   const today = new Date();
@@ -48,7 +49,7 @@ export default function CalendarDayItem({
   return (
     <>
       <div
-        className={`calendar-day-item ${classToAdd} relative overflow-clip`}
+        className={`calendar-day-item ${classToAdd} relative overflow-clip hover:scale-105 clip-mask-safari`}
         onClick={isToday || isBeforeToday ? openModal : undefined}
       >
         <p className="font-bold text-3xl md:text-4xl lg:text-6xl ">
@@ -60,7 +61,7 @@ export default function CalendarDayItem({
             <p className="text-sm md:text-base lg:text-lg">Open Now</p>
           </div>
         )}
-        {!isLocked && (
+        {!day.isLocked && (
           <Image
             className="object-cover"
             src={day.imageUrl}
@@ -68,7 +69,7 @@ export default function CalendarDayItem({
             fill={true}
           />
         )}
-        {!isLocked && (
+        {!day.isLocked && (
           <div className="absolute bottom-4 right-4 z-10">
             <p className="font-bold text-3xl md:text-4xl lg:text-6xl text-white">
               {day.dayNumber}
